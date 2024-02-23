@@ -7,8 +7,21 @@
 
     <form id="papers_form" action="">
 
-      <input type="number" v-model="capital" placeholder="Ingrese el capital" />
-      <Switcher />
+      <input type="number" v-model="paper_1" placeholder="Valor del activo" />
+      <Selector ref="selector1"/>
+
+      <input type="number" v-model="paper_2" placeholder="Valor del activo" />
+      <Selector ref="selector2"/>
+
+      <input type="number" v-model="fixed_result" placeholder="" disabled />
+      <br>
+      <input type="number" v-model="variable_result" placeholder="" disabed/>
+      <br>
+      <div id="buttons_row">
+      <button @click.prevent="clearInputs">Limpiar</button>
+      <button @click.prevent="calculate">Calcular</button>
+    </div>
+
 
     </form>
 
@@ -20,31 +33,42 @@
 
 <script>
 import Brander from '../../public/components/brander.vue';
-import Switcher from '../../public/components/switcher.vue';
+import Selector from '../../public/components/selector.vue';
 import Footer from '../../public/components/footer.vue';
 
 
 export default {
   components: {
     Brander,
-    Switcher,
+    Selector,
     Footer
   },
   data() {
     return {
-      inputData: ''
+      paper_1: null,
+      paper_2: null,
+      fixed_result: null,
+      variable_result: null,
     };
   },
   methods: {
-    saveToLocalStorage() {
-      if (this.inputData.trim() !== '') {
-        localStorage.setItem('userData', this.inputData);
-        this.inputData = ''; // Limpiar el input después de guardar
-        alert('Datos guardados en el almacenamiento local.');
-      } else {
-        alert('Ingrese datos antes de guardar.');
+    calculate() {
+      let fixedSum = 0;
+      let variableSum = 0;
+
+      for (let i = 1; i <= 2; i++) {
+        const selector = this.$refs['selector' + i];
+        if (selector.selected === 'fixed') {
+          fixedSum += this['paper_' + i];
+        } else if (selector.selected === 'variable') {
+          variableSum += this['paper_' + i];
+        }
       }
+
+      this.fixed_result = fixedSum;
+      this.variable_result = variableSum;
     }
+
   }
 };
 </script>
@@ -102,6 +126,12 @@ input {
 
 input[disabled] {
   background-color: #f5f5f5;
+}
+
+#buttons_row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 button {

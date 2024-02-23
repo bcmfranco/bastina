@@ -1,5 +1,5 @@
 <template>
-  <div class="switcher" @click="toggleSwitch" :class="{ 'active': isActive }">
+  <div class="switcher" @click="toggleSwitch" :class="{ 'paper_type': paperType }">
     <div class="switcher-button"></div>
   </div>
 </template>
@@ -8,13 +8,13 @@
 export default {
   data() {
     return {
-      isActive: false
+      paperType: false
     };
   },
   methods: {
     toggleSwitch() {
-      this.isActive = !this.isActive;
-      this.$emit('change', this.isActive);
+      this.paperType = !this.paperType;
+      this.$emit('change', this.paperType);
     }
   }
 };
@@ -31,7 +31,7 @@ export default {
 }
 
 .switcher.active {
-  background-color: #5cb85c;
+  background-color: #ccc;
 }
 
 .switcher-button {
@@ -45,7 +45,7 @@ export default {
   transition: transform 0.3s;
 }
 
-.switcher.active .switcher-button {
+.switcher.paper_type .switcher-button {
   transform: translateX(30px);
 }
 </style>

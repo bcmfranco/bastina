@@ -7,7 +7,8 @@
     <div id="content">
       <div id="input_wrapper">
         <input type="number" v-model.number="newItem" placeholder="Nuevo ítem" />
-        <button @click="addItem">➕</button>
+        <button @click="addItem(1)">➕</button>
+        <button @click="addItem(2)">➕</button>
       </div>
 
       <div id="item_list">
@@ -20,6 +21,8 @@
       <div id="total_wrapper">
         <!-- <label>Total:</label> -->
         <input type="number" v-model="total" disabled />
+        <input type="number" v-model="totalVariable" disabled />
+
       </div>
     </div>
 
@@ -42,16 +45,27 @@ export default {
     return {
       newItem: null,
       items: [],
-      total: 0
+      total: 0,
+      totalVariable: 0,
     };
   },
   methods: {
-    addItem() {
-      if (this.newItem !== null) {
-        this.items.push({ id: Date.now(), value: this.newItem });
-        this.total += this.newItem;
-        this.newItem = null;
+    addItem(cateogry) {
+
+      if(cateogry == 1){ // Fixed
+        if (this.newItem !== null) {
+          this.items.push({ id: Date.now(), value: this.newItem });
+          this.total += this.newItem;
+          this.newItem = null;
+        }
+      } else { // Variavles
+        if (this.newItem !== null) {
+          this.items.push({ id: Date.now(), value: this.newItem });
+          this.totalVariable += this.newItem;
+          this.newItem = null;
+        }
       }
+
     },
     deleteItem(id) {
       const item = this.items.find(item => item.id === id);

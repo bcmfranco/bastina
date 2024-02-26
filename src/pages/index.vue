@@ -16,6 +16,11 @@
           <button @click="deleteItem(item.id)">Eliminar</button>
         </div>
       </div>
+
+      <div id="total_wrapper">
+        <label>Total:</label>
+        <input type="number" v-model="total" disabled />
+      </div>
     </div>
 
     <div>
@@ -36,18 +41,24 @@ export default {
   data() {
     return {
       newItem: null,
-      items: []
+      items: [],
+      total: 0
     };
   },
   methods: {
     addItem() {
       if (this.newItem !== null) {
         this.items.push({ id: Date.now(), value: this.newItem });
+        this.total += this.newItem;
         this.newItem = null;
       }
     },
     deleteItem(id) {
-      this.items = this.items.filter(item => item.id !== id);
+      const item = this.items.find(item => item.id === id);
+      if (item) {
+        this.total -= item.value;
+        this.items = this.items.filter(item => item.id !== id);
+      }
     }
   }
 };
@@ -72,6 +83,10 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#total_wrapper {
+  margin-top: 20px;
 }
 
 .todo-item {

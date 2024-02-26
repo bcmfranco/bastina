@@ -7,21 +7,21 @@
     <div id="content">
       <div id="input_wrapper">
         <input type="number" v-model.number="newItem" placeholder="Nuevo ítem" />
-        <button @click="addItem(1)">➕</button>
-        <button @click="addItem(2)">➕</button>
+        <button @click="addItem(1)">fixed</button>
+        <button @click="addItem(2)">viariable</button>
       </div>
 
       <div id="item_list">
         <div v-for="item in items" :key="item.id" class="item">
           <span>{{ item.value }}</span>
-          <button @click="deleteItem(item.id)">➖</button>
+          <button @click="deleteItem(item.id)">-</button>
         </div>
       </div>
 
       <div id="total_wrapper">
         <!-- <label>Total:</label> -->
-        <input type="number" v-model="total" disabled />
-        <input type="number" v-model="totalVariable" disabled />
+        <input type="number" class="total_input" v-model="total" disabled />
+        <input type="number" class="total_input" v-model="totalVariable" disabled />
 
       </div>
     </div>
@@ -117,7 +117,7 @@ input[type="number"] {
   flex: 1;
 }
 
-button {
+#input_wrapper button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -125,6 +125,8 @@ button {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+  margin: 0px 10px;
+
 }
 
 button:hover {
@@ -133,6 +135,17 @@ button:hover {
 
 #item_list {
   width: 100%;
+}
+
+#item_list button{
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin: 10px 0px;
 }
 
 .item {
@@ -145,9 +158,13 @@ button:hover {
 
 #total_wrapper {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 20px;
   width: 100%;
+}
+
+#total_wrapper .total_input{
+  width: 100px;
 }
 
 label {

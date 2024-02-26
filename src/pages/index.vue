@@ -22,6 +22,7 @@
         <!-- <label>Total:</label> -->
         <input type="number" class="total_input" v-model="total" disabled />
         <input type="number" class="total_input" v-model="totalVariable" disabled />
+        <input type="number" class="total_input" v-model="totalMax" disabled />
 
       </div>
     </div>
@@ -47,25 +48,32 @@ export default {
       items: [],
       total: 0,
       totalVariable: 0,
+      totalMax: 0,
     };
   },
   methods: {
+    totalSum(){
+      return this.totalMax = parseInt(this.total) + parseInt(this.totalVariable);
+    },
     addItem(cateogry) {
 
       if(cateogry == 1){ // Fixed
         if (this.newItem !== null) {
           this.items.push({ id: Date.now(), value: this.newItem+" fixed" });
           this.total += this.newItem;
+
           this.newItem = null;
         }
       } else { // Variavles
         if (this.newItem !== null) {
           this.items.push({ id: Date.now(), value: this.newItem+" variable" });
           this.totalVariable += this.newItem;
+
           this.newItem = null;
         }
       }
 
+      this.totalSum();
     },
     deleteItem(id) {
       const item = this.items.find(item => item.id === id);
@@ -125,8 +133,6 @@ input[type="number"] {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin: 0px 10px;
-
 }
 
 button:hover {

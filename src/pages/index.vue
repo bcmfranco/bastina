@@ -3,51 +3,58 @@
     <div>
       <Brander />
     </div>
-  </div>
 
-  <div id="content">
-    content
-  </div>
+    <div id="content">
+      <div id="input_wrapper">
+        <input type="number" v-model.number="newItem" placeholder="Nuevo ítem" />
+        <button @click="addItem">Sumar</button>
+      </div>
 
-  <div>
-    <Footer />
-  </div>
+      <div id="item_list">
+        <div v-for="item in items" :key="item.id" class="item">
+          <span>{{ item.value }}</span>
+          <button @click="deleteItem(item.id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
 
+    <div>
+      <Footer />
+    </div>
+  </div>
 </template>
 
 <script>
-
 import Brander from '../../public/components/brander.vue';
-import Selector from '../../public/components/selector.vue';
 import Footer from '../../public/components/footer.vue';
 
 export default {
   components: {
     Brander,
-    Selector,
     Footer
   },
   data() {
     return {
-      // Variables de tu componente
+      newItem: null,
+      items: []
     };
   },
   methods: {
-    // Métodos de tu componente
-  },
-  computed: {
-    // Propiedades computadas de tu componente
+    addItem() {
+      if (this.newItem !== null) {
+        this.items.push({ id: Date.now(), value: this.newItem });
+        this.newItem = null;
+      }
+    },
+    deleteItem(id) {
+      this.items = this.items.filter(item => item.id !== id);
+    }
   }
 };
 </script>
 
-
-
 <style scoped>
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
-
-#container{
+#container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
@@ -61,14 +68,21 @@ export default {
   overflow: hidden;
 }
 
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.todo-item {
+  margin-bottom: 10px;
+}
+
 @media (max-width: 480px) {
   #container {
     display: flex;
     flex-direction: column;
     margin-top: unset;
   }
-
 }
-
-
 </style>

@@ -54,13 +54,13 @@ export default {
 
       if(cateogry == 1){ // Fixed
         if (this.newItem !== null) {
-          this.items.push({ id: Date.now(), value: this.newItem });
+          this.items.push({ id: Date.now(), value: this.newItem+" fixed" });
           this.total += this.newItem;
           this.newItem = null;
         }
       } else { // Variavles
         if (this.newItem !== null) {
-          this.items.push({ id: Date.now(), value: this.newItem });
+          this.items.push({ id: Date.now(), value: this.newItem+" variable" });
           this.totalVariable += this.newItem;
           this.newItem = null;
         }

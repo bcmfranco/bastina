@@ -65,7 +65,6 @@ export default {
 </script>
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 #container {
@@ -93,6 +92,7 @@ export default {
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  width: 100%;
 }
 
 input[type="number"] {
@@ -100,10 +100,7 @@ input[type="number"] {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
-}
-
-input[type="number"]::placeholder {
-  font-family: "Montserrat", sans-serif;
+  flex: 1;
 }
 
 button {
@@ -128,13 +125,15 @@ button:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  width: 100%;
+  text-indent: 10px;
 }
 
 #total_wrapper {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  width: 100%;
 }
 
 label {

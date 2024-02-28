@@ -12,8 +12,8 @@
       </div>
 
       <div id="item_list">
-        <div v-for="item in items" :key="item.id" class="item">
-          <span>{{ item.value }}</span>
+        <div v-for="item in sortedItems" :key="item.id" class="item">
+          <span>{{ item.value }} {{ item.type }}</span>
           <button @click="deleteItem(item.id)">-</button>
         </div>
       </div>
@@ -107,6 +107,10 @@ export default {
     }
   },
   computed: {
+    sortedItems() {
+      const allItems = [...this.items, ...this.itemsVariable];
+      return allItems.sort((a, b) => a.id - b.id);
+    }
   }
 };
 </script>

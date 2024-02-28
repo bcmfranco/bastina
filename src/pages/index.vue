@@ -19,10 +19,25 @@
       </div>
 
       <div id="total_wrapper">
-        <!-- <label>Total:</label> -->
-        <input type="number" class="total_input" v-model="total" disabled />
-        <input type="number" class="total_input" v-model="totalVariable" disabled />
-        <input type="number" class="total_input" v-model="totalMax" disabled />
+        <div id="type_totals">
+          <div class="type_totals_wrappers" id="fixed_total">
+            <label for="total" style="font-weight: normal;">Fixed income</label>
+            <input id="total" type="number" class="total_input" v-model="total" disabled />
+          </div>
+
+          <div class="type_totals_wrappers" id="variable_total">
+            <label for="totalVariable">Variable income</label>
+            <input id="totalVariable" type="number" class="total_input" v-model="totalVariable" disabled />
+          </div>
+        </div>
+
+        <div class="type_totals_wrappers">
+          <label for="totalVariable">Total income</label>
+          <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
+        </div>
+
+
+
       </div>
     </div>
 
@@ -193,7 +208,7 @@ button:hover {
 
 #total_wrapper {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   margin-top: 20px;
   width: 100%;
 }
@@ -202,9 +217,26 @@ button:hover {
   width: 100px;
 }
 
-label {
-  font-weight: bold;
+#total_wrapper #type_totals{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  padding: 20px 0px;
 }
+
+#total_wrapper .type_totals_wrappers{
+  display: flex;
+  flex-direction: column;
+  font-weight: unset;
+  font-family: "Montserrat", sans-serif;
+  text-indent: 5px;
+  line-height: 22px;
+}
+
+.type_totals_wrappers #max_total{
+  width: 266px;
+}
+
 
 input[type="number"][disabled] {
   background-color: #f0f0f0;

@@ -212,6 +212,7 @@ button:hover {
   align-items: center;
   width: 100%;
   text-indent: 10px;
+  height: 36px;
 }
 
 #total_wrapper {

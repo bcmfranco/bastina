@@ -23,7 +23,6 @@
         <input type="number" class="total_input" v-model="total" disabled />
         <input type="number" class="total_input" v-model="totalVariable" disabled />
         <input type="number" class="total_input" v-model="totalMax" disabled />
-
       </div>
     </div>
 
@@ -46,42 +45,68 @@ export default {
     return {
       newItem: null,
       items: [],
+      itemsVariable: [],
       total: 0,
       totalVariable: 0,
       totalMax: 0,
+      variablePercentage: 50,
+      fixedPercentage: 50
     };
   },
   methods: {
-    totalSum(){
-      return this.totalMax = parseInt(this.total) + parseInt(this.totalVariable);
+    fixedSum(){
+      return this.total = this.items.reduce((total, item) => total + parseInt(item.value), 0);
+    },
+    variableSum(){
+      return this.totalVariable = this.itemsVariable.reduce((total, item) => total + parseInt(item.value), 0);
+    },
+    maxSum(){
+      const fixedTotal = this.items.reduce((total, item) => total + parseInt(item.value), 0);
+      const variableTotal = this.itemsVariable.reduce((total, item) => total + parseInt(item.value), 0);
+      return this.totalMax = fixedTotal + variableTotal;
     },
     addItem(cateogry) {
 
       if(cateogry == 1){ // Fixed
         if (this.newItem !== null) {
-          this.items.push({ id: Date.now(), value: this.newItem+" fixed" });
-          this.total += this.newItem;
-
+          this.items.push({ id: Date.now(), value: this.newItem, type: "fixed" });
           this.newItem = null;
+          this.fixedSum();
+
         }
       } else { // Variavles
         if (this.newItem !== null) {
-          this.items.push({ id: Date.now(), value: this.newItem+" variable" });
-          this.totalVariable += this.newItem;
-
+          this.itemsVariable.push({ id: Date.now(), value: this.newItem, type: "variable" });
           this.newItem = null;
+          this.variableSum();
         }
       }
 
-      this.totalSum();
+      this.maxSum();
     },
     deleteItem(id) {
-      const item = this.items.find(item => item.id === id);
-      if (item) {
-        this.total -= item.value;
-        this.items = this.items.filter(item => item.id !== id);
+
+      let index = this.items.findIndex(item => item.id === id);
+      if (index !== -1) {
+        this.total -= parseInt(this.items[index].value);
+        this.totalMax -= parseInt(this.items[index].value);
+        this.items.splice(index, 1);
       }
+
+      index = this.itemsVariable.findIndex(item => item.id === id);
+      if (index !== -1) {
+        this.totalVariable -= parseInt(this.itemsVariable[index].value);
+        this.totalMax -= parseInt(this.itemsVariable[index].value);
+        this.itemsVariable.splice(index, 1);
+      }
+     
+
+      this.fixedSum();
+      this.variableSum();
+
     }
+  },
+  computed: {
   }
 };
 </script>

@@ -22,12 +22,12 @@
         <div id="type_totals">
           <div class="type_totals_wrappers" id="fixed_total">
             <label for="total" style="font-weight: normal;">Fixed income</label>
-            <input id="total" type="number" class="total_input" v-model="total" disabled />
+            <input id="totalVariable" type="text" class="total_input" :value="totalFixedPercentage" disabled />
           </div>
 
           <div class="type_totals_wrappers" id="variable_total">
             <label for="totalVariable">Variable income</label>
-            <input id="totalVariable" type="number" class="total_input" v-model="totalVariable" disabled />
+            <input id="totalVariable" type="text" class="total_input" :value="totalVariablePercentage" disabled />
           </div>
         </div>
 
@@ -125,6 +125,14 @@ export default {
     sortedItems() {
       const allItems = [...this.items, ...this.itemsVariable];
       return allItems.sort((a, b) => a.id - b.id);
+    },
+    totalVariablePercentage() {
+      this.variablePercentage = 100/this.totalMax*this.totalVariable;
+      return `${this.totalVariable} (${this.variablePercentage}%)`;
+    },
+    totalFixedPercentage() {
+      this.fixedPercentage = 100/this.totalMax*this.total;
+      return `${this.total} (${this.fixedPercentage}%)`;
     }
   }
 };
@@ -161,7 +169,7 @@ export default {
   width: 100%;
 }
 
-input[type="number"] {
+#type_totals_wrappers input{
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;

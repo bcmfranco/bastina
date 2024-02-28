@@ -251,6 +251,15 @@ input[type="number"][disabled] {
   border: none;
 }
 
+input{
+  height: 33px;
+  border-radius: 5px;
+  border: none;
+  background-color: #f0f0f0;
+  border: none;
+  text-indent: 5px;
+}
+
 @media (max-width: 480px) {
   #container {
     display: flex;

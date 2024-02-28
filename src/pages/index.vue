@@ -126,14 +126,14 @@ export default {
       const allItems = [...this.items, ...this.itemsVariable];
       return allItems.sort((a, b) => a.id - b.id);
     },
-    totalVariablePercentage() {
-      this.variablePercentage = 100/this.totalMax*this.totalVariable;
-      return `${this.totalVariable} (${this.variablePercentage}%)`;
-    },
     totalFixedPercentage() {
-      this.fixedPercentage = 100/this.totalMax*this.total;
-      return `${this.total} (${this.fixedPercentage}%)`;
-    }
+      this.fixedPercentage = Math.round(100 / this.totalMax * this.total);
+      return `${this.total} - ${this.fixedPercentage}%`;
+    },
+    totalVariablePercentage() {
+      this.variablePercentage = Math.round(100 / this.totalMax * this.totalVariable);
+      return `${this.totalVariable} - ${this.variablePercentage}%`;
+    },
   }
 };
 </script>

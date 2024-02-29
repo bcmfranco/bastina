@@ -35,10 +35,12 @@
           <label for="totalVariable">Total income</label>
           <input type="number" class="total_input" id="max_total" v-model="totalMax" disabled />
         </div>
-
-
-
       </div>
+
+      <div id="saving_wrapper">
+        <button @click="generateToken()">Generar token</button>
+      </div>      
+
     </div>
 
     <div>
@@ -50,6 +52,8 @@
 <script>
 import Brander from '../../public/components/brander.vue';
 import Footer from '../../public/components/footer.vue';
+
+// Agregar para mandar por whatsapp
 
 export default {
   components: {
@@ -119,6 +123,15 @@ export default {
       this.fixedSum();
       this.variableSum();
 
+    },
+    generateToken(){
+      if(this.items[0] || this.itemsVariable[0]){
+        var allItems = [...this.items, ...this.itemsVariable].sort((a, b) => a.id - b.id);
+        
+        var itemJoined = allItems.map(item => {
+          return item.id + "," + item.value + "," + (item.type === "fixed" ? "f" : "v");
+        }).join("zzz");
+      }
     }
   },
   computed: {
@@ -177,7 +190,7 @@ export default {
   flex: 1;
 }
 
-#input_wrapper button {
+button {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -185,6 +198,10 @@ export default {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+#saving_wrapper button{
+  margin: 10px 0px;
 }
 
 button:hover {

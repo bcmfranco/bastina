@@ -78,7 +78,7 @@ export default {
   },
   mounted() {
 
-    // Acá tenemos los items parseados
+    // Read token and write items
     var token = window.location.search.substring(1);
     if(token){
       var parts = token.split("zzz");
@@ -87,10 +87,15 @@ export default {
         return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
       });
 
-      console.log("allItems", allItems);
-      return allItems;
+      allItems.forEach(item => {
+        if(item.type === "fixed") {
+          this.items.push(item);
+        } else {
+          this.itemsVariable.push(item);
+        }
+      });
     }
-
+    ////////////////
   },
   methods: {
     fixedSum(){

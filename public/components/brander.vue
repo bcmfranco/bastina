@@ -7,7 +7,7 @@
     <div id="isotype">
       <h1>bastina</h1>
       <h2>portfolio manager</h2>
-      <Navbarr />
+      <!-- <Navbarr /> -->
     </div>
   </div>
 

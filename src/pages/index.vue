@@ -72,8 +72,25 @@ export default {
       totalMax: 0,
       variablePercentage: 50,
       fixedPercentage: 50,
-      wsp_content: "Vacío"
+      wsp_content: "Vacío",
+      sortedItems: []
     };
+  },
+  mounted() {
+
+    // Acá tenemos los items parseados
+    var token = window.location.search.substring(1);
+    if(token){
+      var parts = token.split("zzz");
+      var allItems = parts.map(part => {
+        var [id, value, type] = part.split(",");
+        return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
+      });
+
+      console.log("allItems", allItems);
+      return allItems;
+    }
+
   },
   methods: {
     fixedSum(){
@@ -135,21 +152,6 @@ export default {
           return item.id + "," + item.value + "," + (item.type === "fixed" ? "f" : "v");
         }).join("zzz");
       }
-    },
-    readToken() {
-
-      var token = window.location.search.substring(1);
-      if(token){
-        var parts = token.split("zzz");
-        var allItems = parts.map(part => {
-          var [id, value, type] = part.split(",");
-          return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
-        });
-
-        return allItems;
-      }
-
-
     }
   },
   computed: {

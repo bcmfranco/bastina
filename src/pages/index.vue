@@ -39,6 +39,8 @@
 
       <div id="saving_wrapper">
         <button @click="generateToken()">Generar token</button>
+        <br>
+        <a :href="'https://api.whatsapp.com/send?phone=NUMERO&text=' + encodeURIComponent(mensaje)">Enviar datos por WhatsApp</a>
       </div>      
 
     </div>
@@ -132,6 +134,15 @@ export default {
           return item.id + "," + item.value + "," + (item.type === "fixed" ? "f" : "v");
         }).join("zzz");
       }
+    },
+    readToken(token) {
+      var parts = token.split("zzz");
+      var allItems = parts.map(part => {
+        var [id, value, type] = part.split(",");
+        return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
+      });
+
+      return allItems;
     }
   },
   computed: {
@@ -190,7 +201,8 @@ export default {
   flex: 1;
 }
 
-button {
+button,
+a {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -202,6 +214,10 @@ button {
 
 #saving_wrapper button{
   margin: 10px 0px;
+}
+
+#saving_wrapper a{
+  text-decoration: none;
 }
 
 button:hover {

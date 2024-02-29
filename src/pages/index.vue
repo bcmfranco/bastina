@@ -38,9 +38,7 @@
       </div>
 
       <div id="saving_wrapper">
-        <button @click="generateToken()">Generar token</button>
-        <br>
-        <a :href="'https://api.whatsapp.com/send?phone=NUMERO&text=' + encodeURIComponent(this.wsp_content)">Enviar datos por WhatsApp</a>
+        <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
       </div>      
 
     </div>
@@ -149,7 +147,8 @@ export default {
       this.variableSum();
 
     },
-    generateToken(){
+    prepareWhatsAppMessage() {
+      // Genero token
       if(this.items[0] || this.itemsVariable[0]){
         var allItems = [...this.items, ...this.itemsVariable].sort((a, b) => a.id - b.id);
         
@@ -157,6 +156,10 @@ export default {
           return item.id + "," + item.value + "," + (item.type === "fixed" ? "f" : "v");
         }).join("zzz");
       }
+
+      // Paso el token como contenido de wsp
+      this.wsp_content = itemJoined;
+      window.location.href = 'https://api.whatsapp.com/send?phone=+543413690080&text=' + window.location.href + "?" + encodeURIComponent(this.wsp_content);
     }
   },
   computed: {

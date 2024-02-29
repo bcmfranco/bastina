@@ -40,7 +40,7 @@
       <div id="saving_wrapper">
         <button @click="generateToken()">Generar token</button>
         <br>
-        <a :href="'https://api.whatsapp.com/send?phone=NUMERO&text=' + encodeURIComponent(mensaje)">Enviar datos por WhatsApp</a>
+        <a :href="'https://api.whatsapp.com/send?phone=NUMERO&text=' + encodeURIComponent(this.wsp_content)">Enviar datos por WhatsApp</a>
       </div>      
 
     </div>
@@ -71,7 +71,8 @@ export default {
       totalVariable: 0,
       totalMax: 0,
       variablePercentage: 50,
-      fixedPercentage: 50
+      fixedPercentage: 50,
+      wsp_content: "Vacío"
     };
   },
   methods: {
@@ -135,19 +136,25 @@ export default {
         }).join("zzz");
       }
     },
-    readToken(token) {
-      var parts = token.split("zzz");
-      var allItems = parts.map(part => {
-        var [id, value, type] = part.split(",");
-        return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
-      });
+    readToken() {
 
-      return allItems;
+      var token = window.location.search.substring(1);
+      if(token){
+        var parts = token.split("zzz");
+        var allItems = parts.map(part => {
+          var [id, value, type] = part.split(",");
+          return { id: parseInt(id), value: parseInt(value), type: type === "f" ? "fixed" : "variable" };
+        });
+
+        return allItems;
+      }
+
+
     }
   },
   computed: {
     sortedItems() {
-      const allItems = [...this.items, ...this.itemsVariable];
+      var allItems = [...this.items, ...this.itemsVariable];
       return allItems.sort((a, b) => a.id - b.id);
     },
     totalFixedPercentage() {

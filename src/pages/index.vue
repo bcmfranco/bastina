@@ -94,6 +94,11 @@ export default {
           this.itemsVariable.push(item);
         }
       });
+
+      this.fixedSum();
+      this.variableSum();
+      this.maxSum();
+
     }
     ////////////////
   },

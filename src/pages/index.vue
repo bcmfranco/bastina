@@ -38,6 +38,7 @@
       </div>
 
       <div id="saving_wrapper">
+        <input type="text" class="" id="phone_number" v-model="phoneNumber" placeholder="+543413690080"/>
         <button @click="prepareWhatsAppMessage">Enviar datos por WhatsApp</button>
       </div>      
 
@@ -71,7 +72,8 @@ export default {
       variablePercentage: 50,
       fixedPercentage: 50,
       wsp_content: "Vacío",
-      sortedItems: []
+      sortedItems: [],
+      phoneNumber: "+543413690080"
     };
   },
   mounted() {
@@ -157,9 +159,12 @@ export default {
         }).join("zzz");
       }
 
+      // Obtener el número de teléfono del input
+      this.phone_number = this.phoneNumber;
+
       // Paso el token como contenido de wsp
       this.wsp_content = itemJoined;
-      window.location.href = 'https://api.whatsapp.com/send?phone=+543413690080&text=' + window.location.href + "?" + encodeURIComponent(this.wsp_content);
+      window.location.href = 'https://api.whatsapp.com/send?phone=' + this.phone_number +'&text=' + window.location.href + "?" + encodeURIComponent(this.wsp_content);
     }
   },
   computed: {
@@ -227,6 +232,14 @@ a {
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+#saving_wrapper{
+  margin: 10px 0px;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  width: 266px;
 }
 
 #saving_wrapper button{

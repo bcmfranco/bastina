@@ -257,15 +257,23 @@ a {
   padding: 10px 10px;
   display: flex;
   flex-direction: column;
-  width: 266px;
+  width: 300px;
+  background-color: #ae2f2f;
+  padding: 10px 15px;
+}
+
+#saving_wrapper #phone_number{
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #e4e4e4;
+  font-size: 16px;
+  color: #e4e4e4;
+  text-align: center;
+  height: 30px;
 }
 
 #saving_wrapper button{
   margin: 10px 0px;
-}
-
-#saving_wrapper a{
-  text-decoration: none;
 }
 
 button:hover {

@@ -6,7 +6,7 @@
 
     <div id="content">
       <div id="input_wrapper">
-        <input type="number" v-model.number="newItem" placeholder="Nuevo ítem" />
+        <input type="number" id="add_item" v-model.number="newItem" placeholder="Nuevo ítem" />
         <button @click="addItem(1)">fixed</button>
         <button @click="addItem(2)">viariable</button>
       </div>
@@ -214,18 +214,39 @@ export default {
 }
 
 #input_wrapper {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 50% 25% 25%;
   align-items: center;
   margin-bottom: 20px;
+  width: 300px;
+  background-color: #1e4c7d;
+  padding: 10px 15px;
+  border-radius: 5px;
+  gap: 5px;
+}
+
+#input_wrapper input{
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #e4e4e4;
+  color: #e4e4e4;
+  height: 34px;
+}
+
+#input_wrapper #add_item::placeholder{
+  color: #e4e4e4;
+}
+
+#input_wrapper #add_item{
+  width: 100px
 }
 
 button,
 a {
   padding: 10px 20px;
   border: none;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #e4e4e4;
+  background-color: inherit;
   color: white;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -256,6 +277,7 @@ button:hover {
   padding: 10px 15px;
   background-color: #1e4c7d;
   color: #e4e4e4;
+  border-radius: 5px;
 }
 
 #item_list button{
@@ -288,6 +310,7 @@ button:hover {
   color: #e4e4e4;
   padding: 10px 15px;
   font-size: 16px;
+  border-radius: 5px;
 }
 
 #total_wrapper .total_input{

@@ -14,7 +14,7 @@
       <div id="item_list">
         <div v-for="item in sortedItems" :key="item.id" class="item">
           <span>{{ item.value }} {{ item.type }}</span>
-          <button @click="deleteItem(item.id)">-</button>
+          <button @click="deleteItem(item.id)">x</button>
         </div>
       </div>
 
@@ -199,8 +199,8 @@ export default {
   align-items: center;
   justify-items: center;
   height: 100%;
-  background: rgb(246,151,218);
-  background: linear-gradient(312deg, rgba(246,151,218,1) 18%, rgba(244,237,135,1) 62%);
+  /* background: rgb(246,151,218);
+  background: linear-gradient(312deg, rgba(246,151,218,1) 18%, rgba(244,237,135,1) 62%); */
   font-family: "Montserrat", sans-serif;
   height: 100vh;
   overflow: hidden;
@@ -215,17 +215,9 @@ export default {
 
 #input_wrapper {
   display: flex;
+  flex-direction: row;
   align-items: center;
   margin-bottom: 20px;
-  width: 100%;
-}
-
-#type_totals_wrappers input{
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-  flex: 1;
 }
 
 button,
@@ -260,16 +252,19 @@ button:hover {
 }
 
 #item_list {
-  width: 100%;
+  width: 300px;
+  padding: 10px 15px;
+  background-color: #1e4c7d;
+  color: #e4e4e4;
 }
 
 #item_list button{
   padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.1);
-  color: white;
+  border-bottom: 1px solid #e4e4e4;
+  border-radius: 0px;
+  color: #e4e4e4;
   cursor: pointer;
+  background-color: inherit;
   transition: background-color 0.3s;
   margin: 10px 0px;
 }
@@ -281,33 +276,45 @@ button:hover {
   width: 100%;
   text-indent: 10px;
   height: 36px;
+  padding: 3px 0px;
 }
 
 #total_wrapper {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  width: 100%;
+  width: 300px;
+  background-color: #ae2f2f;
+  color: #e4e4e4;
+  padding: 10px 15px;
+  font-size: 16px;
 }
 
 #total_wrapper .total_input{
   width: 100px;
+  font-size: 16px;
 }
 
 #total_wrapper #type_totals{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-
-  padding: 20px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 #total_wrapper .type_totals_wrappers{
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 50% 50%;
   font-weight: unset;
   font-family: "Montserrat", sans-serif;
   text-indent: 5px;
   line-height: 22px;
+}
+
+.type_totals_wrappers input{
+  font-family: inherit;
+  color: #e4e4e4;
+  background-color: inherit;
+  border: none;
 }
 
 .type_totals_wrappers #max_total{
@@ -315,19 +322,6 @@ button:hover {
 }
 
 
-input[type="number"][disabled] {
-  background-color: #f0f0f0;
-  border: none;
-}
-
-input{
-  height: 33px;
-  border-radius: 5px;
-  border: none;
-  background-color: #f0f0f0;
-  border: none;
-  text-indent: 5px;
-}
 
 @media (max-width: 480px) {
   #container {

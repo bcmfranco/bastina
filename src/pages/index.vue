@@ -228,7 +228,7 @@ export default {
 #input_wrapper input{
   background-color: inherit;
   border: none;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px dashed #e4e4e4;
   color: #e4e4e4;
   height: 34px;
 }
@@ -265,7 +265,7 @@ a {
 #saving_wrapper #phone_number{
   background-color: inherit;
   border: none;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px dashed #e4e4e4;
   font-size: 16px;
   color: #e4e4e4;
   text-align: center;

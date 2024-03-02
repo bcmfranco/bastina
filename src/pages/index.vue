@@ -1,5 +1,5 @@
 <template>
-  <div id="container">
+  <div class="magic_bn_arrow" id="container">
     <div>
       <Brander />
     </div>
@@ -199,11 +199,48 @@ export default {
   align-items: center;
   justify-items: center;
   height: 100%;
-  /* background: rgb(246,151,218);
-  background: linear-gradient(312deg, rgba(246,151,218,1) 18%, rgba(244,237,135,1) 62%); */
   font-family: "Montserrat", sans-serif;
   height: 100vh;
   overflow: hidden;
+}
+
+.magic_bg_snow{
+  --s: 45px;
+  --c1: #dedede;
+  --c2: #4da5ed;
+  --_g: radial-gradient(calc(var(--s)/2),var(--c1) 97%,#0000);
+  background:
+    var(--_g),var(--_g) calc(2*var(--s)) calc(2*var(--s)),
+    repeating-conic-gradient(from 45deg,#0000 0 25%,var(--c2) 0 50%) calc(-.707*var(--s)) calc(-.707*var(--s)),
+    repeating-linear-gradient(135deg,var(--c1) calc(var(--s)/-2) calc(var(--s)/2),var(--c2) 0 calc(2.328*var(--s)));
+  background-size: calc(4*var(--s)) calc(4*var(--s));
+}
+
+.magic_bn_arrow{
+  --s: 150px; /* control the size */
+  --c:#4da5ed;
+  
+  --l:var(--c) 20%,#0000 0;
+  --g:35%,#8fbee5 0 45%,var(--c) 0;
+  background:
+    linear-gradient(45deg,var(--l) 45%,var(--c) 0 70%,#0000 0),
+    linear-gradient(-45deg,var(--l) var(--g) 70%,#0000 0),
+    linear-gradient(45deg,var(--c) var(--g));
+  background-size: var(--s) var(--s);
+}
+
+.magic_bn_floor{
+  --s: 200px; /* control the size */
+  --c: #fff; /* first color */
+  
+  --_g: #0000 8%,var(--c) 0 17%,#0000 0 58%;
+  background: 
+    linear-gradient(135deg,#0000 20.5%,var(--c) 0 29.5%,#0000 0) 0 calc(var(--s)/4),
+    linear-gradient( 45deg,var(--_g)) calc(var(--s)/2) 0,
+    linear-gradient(135deg,var(--_g),var(--c) 0 67%,#0000 0),        
+    linear-gradient( 45deg,var(--_g),var(--c) 0 67%,#0000 0 83%,var(--c) 0 92%,#0000 0),
+    #1095c1; /* second color */
+  background-size: var(--s) var(--s);
 }
 
 #content {
@@ -221,7 +258,7 @@ export default {
   width: 300px;
   margin-bottom: 20px;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #1e4c7d;
 }
 
@@ -257,6 +294,7 @@ a {
   flex-direction: column;
   width: 300px;
   margin: 10px 0px;
+  border-radius: 10px;
   background-color: #ae2f2f;
   padding: 10px 15px;
 }
@@ -282,7 +320,7 @@ button:hover {
 #item_list {
   width: 300px;
   min-height: 300px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding: 10px 15px;
   background-color: #1e4c7d;
   color: #e4e4e4;
@@ -315,7 +353,7 @@ button:hover {
   width: 300px;
   margin-top: 20px;
   padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   background-color: #ae2f2f;
   font-size: 16px;
   color: #e4e4e4;

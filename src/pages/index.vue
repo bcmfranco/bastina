@@ -179,11 +179,11 @@ export default {
     },
     totalFixedPercentage() {
       this.fixedPercentage = Math.round(100 / this.totalMax * this.total);
-      return `${this.total} - ${this.fixedPercentage}%`;
+      return `${this.total} / ${this.fixedPercentage}%`;
     },
     totalVariablePercentage() {
       this.variablePercentage = Math.round(100 / this.totalMax * this.totalVariable);
-      return `${this.totalVariable} - ${this.variablePercentage}%`;
+      return `${this.totalVariable} / ${this.variablePercentage}%`;
     },
   }
 };
@@ -217,20 +217,20 @@ export default {
   display: grid;
   grid-template-columns: 50% 25% 25%;
   align-items: center;
-  margin-bottom: 20px;
+  gap: 5px;
   width: 300px;
-  background-color: #1e4c7d;
+  margin-bottom: 20px;
   padding: 10px 15px;
   border-radius: 5px;
-  gap: 5px;
+  background-color: #1e4c7d;
 }
 
 #input_wrapper input{
   background-color: inherit;
   border: none;
   border-bottom: 1px dashed #e4e4e4;
-  color: #e4e4e4;
   height: 34px;
+  color: #e4e4e4;
 }
 
 #input_wrapper #add_item::placeholder{
@@ -253,23 +253,22 @@ a {
 }
 
 #saving_wrapper{
-  margin: 10px 0px;
-  padding: 10px 10px;
   display: flex;
   flex-direction: column;
   width: 300px;
+  margin: 10px 0px;
   background-color: #ae2f2f;
   padding: 10px 15px;
 }
 
 #saving_wrapper #phone_number{
-  background-color: inherit;
+  height: 30px;
   border: none;
   border-bottom: 1px dashed #e4e4e4;
+  background-color: inherit;
+  text-align: center;
   font-size: 16px;
   color: #e4e4e4;
-  text-align: center;
-  height: 30px;
 }
 
 #saving_wrapper button{
@@ -282,21 +281,22 @@ button:hover {
 
 #item_list {
   width: 300px;
+  min-height: 300px;
+  border-radius: 5px;
   padding: 10px 15px;
   background-color: #1e4c7d;
   color: #e4e4e4;
-  border-radius: 5px;
 }
 
 #item_list button{
+  margin: 10px 0px;
   padding: 10px 20px;
   border-bottom: 1px solid #e4e4e4;
   border-radius: 0px;
   color: #e4e4e4;
-  cursor: pointer;
   background-color: inherit;
+  cursor: pointer;
   transition: background-color 0.3s;
-  margin: 10px 0px;
 }
 
 .item {
@@ -304,21 +304,21 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  text-indent: 10px;
   height: 36px;
   padding: 3px 0px;
+  text-indent: 10px;
 }
 
 #total_wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   width: 300px;
-  background-color: #ae2f2f;
-  color: #e4e4e4;
+  margin-top: 20px;
   padding: 10px 15px;
-  font-size: 16px;
   border-radius: 5px;
+  background-color: #ae2f2f;
+  font-size: 16px;
+  color: #e4e4e4;
 }
 
 #total_wrapper .total_input{
@@ -335,17 +335,17 @@ button:hover {
 #total_wrapper .type_totals_wrappers{
   display: grid;
   grid-template-columns: 50% 50%;
+  line-height: 22px;
+  text-indent: 5px;
   font-weight: unset;
   font-family: "Montserrat", sans-serif;
-  text-indent: 5px;
-  line-height: 22px;
 }
 
 .type_totals_wrappers input{
+  border: none;
+  background-color: inherit;
   font-family: inherit;
   color: #e4e4e4;
-  background-color: inherit;
-  border: none;
 }
 
 .type_totals_wrappers #max_total{

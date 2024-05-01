@@ -1,6 +1,6 @@
 <template>
 
-  <div id="gumcom_brander">
+<div id="gumcom_brander" @click="goToHome">
     <div id="logotype">
       <div>BA</div>
     </div>
@@ -14,6 +14,16 @@
 
 </template>
 
+<script>
+  export default {
+    methods: {
+      goToHome() {
+        this.$router.push('/');
+      }
+    }
+  }
+</script>
+
 
 <style scoped>
 
@@ -26,6 +36,7 @@
     align-items: center;
     justify-items: center;
     margin: 10px 0px;
+    cursor: pointer;
   }
 
   #gumcom_brander #logotype{

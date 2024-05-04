@@ -1,0 +1,2 @@
++ Al presionar en el logo, borra el extra de la url pero no limpia los campos 
++ Habría que poner un método limpiar y llamar a este método cuando se presione el logo

@@ -18,7 +18,11 @@
         </div>
       </div>
 
-      <div id="total_wrapper">
+      <div class="total_wrapper" id="clean_btn" @click="deletedAll()">
+        Limpiar
+      </div>
+
+      <div class="total_wrapper">
         <div id="type_totals">
           <div class="type_totals_wrappers" id="fixed_total">
             <label for="total" style="font-weight: normal;">Fixed income</label>
@@ -154,6 +158,12 @@ export default {
       this.variableSum();
 
     },
+    deletedAll(){
+      this.items = [];
+      this.itemsVariable = [];
+
+      return this;
+    },  
     prepareWhatsAppMessage() {
       // Genero token
       if(this.items[0] || this.itemsVariable[0]){
@@ -347,7 +357,7 @@ button:hover {
   text-indent: 10px;
 }
 
-#total_wrapper {
+.total_wrapper {
   display: flex;
   flex-direction: column;
   width: 300px;
@@ -359,24 +369,30 @@ button:hover {
   color: #e4e4e4;
 }
 
-#total_wrapper .total_input{
+.total_wrapper .total_input{
   width: 100px;
   font-size: 16px;
 }
 
-#total_wrapper #type_totals{
+.total_wrapper #type_totals{
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
 
-#total_wrapper .type_totals_wrappers{
+.total_wrapper .type_totals_wrappers{
   display: grid;
   grid-template-columns: 50% 50%;
   line-height: 22px;
   text-indent: 5px;
   font-weight: unset;
   font-family: "Montserrat", sans-serif;
+}
+
+#clean_btn{
+  text-align: center;
+  color: #e4e4e4;
+  cursor: pointer;
 }
 
 .type_totals_wrappers input{

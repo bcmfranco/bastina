@@ -1,6 +1,6 @@
 <template>
   <div class="magic_bn_arrow" id="container">
-    <div>
+    <div @click="deletedAll()">
       <Brander />
     </div>
 
